@@ -29,7 +29,7 @@ material = SubResource("StandardMaterial3D_brc5k")
 size = Vector3(3, 0.1, 4)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ja2vt"]
-size = Vector3(1, 0.1, 2)
+size = Vector3(3, 0.1, 4)
 
 [node name="Main" type="Node3D"]
 
@@ -48,16 +48,20 @@ shape = SubResource("BoxShape3D_l1t5h")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
 mesh = SubResource("BoxMesh_32kt8")
 
-[node name="RigidBody3D" parent="." instance=ExtResource("1_eq513")]
+[node name="Wheel" parent="." instance=ExtResource("1_eq513")]
 
-[node name="RigidBody3D2" type="RigidBody3D" parent="RigidBody3D"]
+[node name="HingeJoint3D" type="HingeJoint3D" parent="Wheel"]
+node_a = NodePath("..")
+node_b = NodePath("RigidBody3D2")
+
+[node name="RigidBody3D2" type="RigidBody3D" parent="Wheel/HingeJoint3D"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 9.53078e-08, -0.134438, -2.18039)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D/RigidBody3D2"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Wheel/HingeJoint3D/RigidBody3D2"]
 mesh = SubResource("BoxMesh_xpab1")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D/RigidBody3D2"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wheel/HingeJoint3D/RigidBody3D2"]
 shape = SubResource("BoxShape3D_ja2vt")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.898403, 0.439171, 0, -0.439171, 0.898403, 0, 5.36882, 4.28921)
+[node name="Camera3D" type="Camera3D" parent="Wheel/HingeJoint3D/RigidBody3D2"]
+transform = Transform3D(1, 0, 0, 0, 0.898403, 0.439171, 0, -0.439171, 0.898403, 2.18039, 4.03745, 4.28921)

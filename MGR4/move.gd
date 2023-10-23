@@ -1,5 +1,6 @@
 extends RigidBody3D
 
+#Image by <a href="https://www.freepik.com/free-vector/flat-distorted-checkered-background_14213469.htm#query=checkerboard%20pattern&position=1&from_view=keyword&track=ais">Freepik</a>
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -10,8 +11,8 @@ func _ready():
 func _process(delta):
 	if Input.is_action_just_pressed("ui_cancel"):
 		get_tree().quit()
-	
-	$RigidBody3D2.position = global_position
+		
+func _integrate_forces(state):		
 		
 	if Input.is_action_just_pressed("ui_accept"):
 		position = Vector3(1,1,1)	

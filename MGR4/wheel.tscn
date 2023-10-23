@@ -1,11 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://gg55ydn4a2ub"]
+[gd_scene load_steps=9 format=3 uid="uid://gg55ydn4a2ub"]
 
 [ext_resource type="Script" path="res://move.gd" id="1_62it3"]
+[ext_resource type="Texture2D" uid="uid://cgv5my5ruorye" path="res://5448257.jpg" id="2_747wi"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_d2w8i"]
 friction = 4.0
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oxfgq"]
+albedo_texture = ExtResource("2_747wi")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_epvaa"]
+albedo_texture = ExtResource("2_747wi")
+
 [sub_resource type="CylinderMesh" id="CylinderMesh_raqcn"]
+material = SubResource("StandardMaterial3D_epvaa")
 height = 0.5
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l72yo"]
@@ -23,6 +31,7 @@ script = ExtResource("1_62it3")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_oxfgq")
 mesh = SubResource("CylinderMesh_raqcn")
 surface_material_override/0 = SubResource("StandardMaterial3D_l72yo")
 
