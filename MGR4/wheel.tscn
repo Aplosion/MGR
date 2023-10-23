@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://gg55ydn4a2ub"]
+
+[ext_resource type="Script" path="res://move.gd" id="1_62it3"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_d2w8i"]
+friction = 4.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_raqcn"]
+height = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l72yo"]
+albedo_color = Color(1, 0.211765, 1, 1)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_uo2f5"]
+height = 0.5
+
+[node name="RigidBody3D" type="RigidBody3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 1.46581, 0)
+mass = 10.0
+inertia = Vector3(6, 6, 3)
+physics_material_override = SubResource("PhysicsMaterial_d2w8i")
+script = ExtResource("1_62it3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("CylinderMesh_raqcn")
+surface_material_override/0 = SubResource("StandardMaterial3D_l72yo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("CylinderShape3D_uo2f5")

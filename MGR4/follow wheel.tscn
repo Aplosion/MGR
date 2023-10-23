@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://s3vh77ts7lnj"]
+
+[ext_resource type="PackedScene" uid="uid://gg55ydn4a2ub" path="res://wheel.tscn" id="1_g5krb"]
+
+[node name="RigidBody3D" instance=ExtResource("1_g5krb")]
+script = null
