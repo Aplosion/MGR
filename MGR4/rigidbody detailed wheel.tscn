@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://cthtpnq6d7nf5"]
+
+[ext_resource type="PackedScene" uid="uid://dadm2afrkknki" path="res://wheel.blend" id="1_dip0p"]
+[ext_resource type="Texture2D" uid="uid://cgv5my5ruorye" path="res://5448257.jpg" id="2_1q7cf"]
+[ext_resource type="Script" path="res://move.gd" id="2_wkoa1"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ecmlq"]
+friction = 0.8
+rough = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u5b8r"]
+albedo_texture = ExtResource("2_1q7cf")
+
+[node name="wheel" instance=ExtResource("1_dip0p")]
+
+[node name="Wheel-rigid" parent="." index="0"]
+mass = 20.0
+inertia = Vector3(3, 3, 3)
+physics_material_override = SubResource("PhysicsMaterial_ecmlq")
+script = ExtResource("2_wkoa1")
+
+[node name="Wheel-rigid" parent="Wheel-rigid" index="0"]
+material_override = SubResource("StandardMaterial3D_u5b8r")
+
+[node name="CameraRig" type="Marker3D" parent="." index="1"]
+
+[node name="Camera3D" type="Camera3D" parent="CameraRig" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.93606, 0.351842, 0, -0.351842, 0.93606, -0.0241134, 0.802, 2.21226)
