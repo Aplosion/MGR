@@ -1,7 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://c2e7g04fnphbk"]
+[gd_scene load_steps=10 format=3 uid="uid://c2e7g04fnphbk"]
 
-[ext_resource type="Texture2D" uid="uid://cgv5my5ruorye" path="res://5448257.jpg" id="1_dxyat"]
+[ext_resource type="Script" path="res://main.gd" id="1_5w4aw"]
+[ext_resource type="PackedScene" uid="uid://dd2143jja3wid" path="res://level.tscn" id="2_3w6vj"]
 [ext_resource type="PackedScene" uid="uid://cthtpnq6d7nf5" path="res://rigidbody detailed wheel.tscn" id="2_08jxe"]
+[ext_resource type="PackedScene" uid="uid://cdebpf6wf6ukq" path="res://bottle_with_a3d.tscn" id="3_5f888"]
+[ext_resource type="PackedScene" uid="uid://c8ktiw7fsyv1t" path="res://gate.tscn" id="4_wmf7m"]
+[ext_resource type="AudioStream" uid="uid://bw2c7i0qmax8a" path="res://titanium-170190.mp3" id="5_reipo"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_nmt1s"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -16,16 +20,8 @@ sky = SubResource("Sky_efkpy")
 tonemap_mode = 2
 glow_enabled = true
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_l1t5h"]
-size = Vector3(200, 1, 200)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hewdl"]
-albedo_texture = ExtResource("1_dxyat")
-
-[sub_resource type="BoxMesh" id="BoxMesh_32kt8"]
-size = Vector3(200, 1, 200)
-
 [node name="Main" type="Node3D"]
+script = ExtResource("1_5w4aw")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
@@ -34,14 +30,41 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_0vf8c")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-shape = SubResource("BoxShape3D_l1t5h")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
-material_override = SubResource("StandardMaterial3D_hewdl")
-mesh = SubResource("BoxMesh_32kt8")
-
 [node name="wheel" parent="." instance=ExtResource("2_08jxe")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.18893, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.18054, 0)
+
+[node name="Level" parent="." instance=ExtResource("2_3w6vj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.719089, 0)
+
+[node name="Bottle" parent="." instance=ExtResource("3_5f888")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.60789, 1.10595, 5.51065)
+
+[node name="Bottle2" parent="." instance=ExtResource("3_5f888")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.56782, 1.16934, 0)
+
+[node name="Bottle3" parent="." instance=ExtResource("3_5f888")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.5292, 1.15179, 3.57484)
+
+[node name="Bottle4" parent="." instance=ExtResource("3_5f888")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.0107, 0.983322, 11.9801)
+
+[node name="Bottle5" parent="." instance=ExtResource("3_5f888")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.2599, 1.12934, 0)
+
+[node name="Gate" parent="." instance=ExtResource("4_wmf7m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.16931, 0.280911, 22.1764)
+
+[node name="Gate2" parent="." instance=ExtResource("4_wmf7m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.319267, 0.280911, -6.30129)
+
+[node name="Gate3" parent="." instance=ExtResource("4_wmf7m")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -13.8977, 0.280911, -0.205223)
+
+[node name="Gate4" parent="." instance=ExtResource("4_wmf7m")]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -22.1338, 0.280911, 11.1337)
+
+[node name="Gate5" parent="." instance=ExtResource("4_wmf7m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.9166, 0.280911, 9.30444)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_reipo")

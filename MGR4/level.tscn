@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://dd2143jja3wid"]
+
+[ext_resource type="Texture2D" uid="uid://d3txwjmot22bm" path="res://cracked-asphalt-texture.jpg" id="1_u6nth"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cvdje"]
+albedo_texture = ExtResource("1_u6nth")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_y22rp"]
+top_radius = 50.0
+bottom_radius = 50.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_1cxda"]
+radius = 50.0
+
+[node name="Level" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+material_override = SubResource("StandardMaterial3D_cvdje")
+mesh = SubResource("CylinderMesh_y22rp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("CylinderShape3D_1cxda")

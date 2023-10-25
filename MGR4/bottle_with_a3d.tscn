@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://cdebpf6wf6ukq"]
+
+[ext_resource type="Script" path="res://onentere.gd" id="1_8va1e"]
+[ext_resource type="PackedScene" uid="uid://bwcatr83jkgs7" path="res://bottle.tscn" id="1_fsk30"]
+[ext_resource type="AudioStream" uid="uid://bo07g1u0h1unh" path="res://pickupCoin.wav" id="3_1yiau"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_j4mkb"]
+radius = 0.07
+height = 0.3
+
+[node name="Bottle" type="Node3D"]
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+script = ExtResource("1_8va1e")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("CapsuleShape3D_j4mkb")
+
+[node name="bottle2" parent="Area3D" instance=ExtResource("1_fsk30")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_1yiau")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_color = Color(0.0745098, 1, 0.176471, 1)
+
+[connection signal="body_entered" from="Area3D" to="Area3D" method="_on_body_entered"]

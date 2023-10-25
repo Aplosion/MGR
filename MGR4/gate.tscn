@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://c8ktiw7fsyv1t"]
+
+[ext_resource type="Script" path="res://Gate.gd" id="1_llh5d"]
+[ext_resource type="AudioStream" uid="uid://d0ts8hmbi88xv" path="res://powerUp.wav" id="2_arw0j"]
+[ext_resource type="PackedScene" uid="uid://dprkwp6y3plkc" path="res://check_mark.tscn" id="3_guml7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0lb44"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ovyxq"]
+size = Vector3(4, 0.5, 2)
+
+[node name="Gate" type="Node3D"]
+script = ExtResource("1_llh5d")
+
+[node name="CSGTorus3D" type="CSGTorus3D" parent="."]
+transform = Transform3D(3, 0, 0, 0, -1.31134e-07, -3, 0, 3, -1.31134e-07, 0, 0, 0)
+use_collision = true
+inner_radius = 0.616721
+outer_radius = 0.804142
+material = SubResource("StandardMaterial3D_0lb44")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.439995, 0)
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.613789, 0)
+shape = SubResource("BoxShape3D_ovyxq")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_arw0j")
+
+[node name="check mark" parent="." instance=ExtResource("3_guml7")]
+transform = Transform3D(-3.49691e-08, 0, 0.8, 0, 0.8, 0, -0.8, 0, -3.49691e-08, 0.0204544, 0.971556, 0)
+visible = false
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
